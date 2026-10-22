@@ -1,5 +1,6 @@
 import TodoItem from '../toDoItem/ToDoItem'
 import { useState } from 'react'
+import TodoForm from '../TodoForm/TodoForm'
 
 
 function TodoList() {
@@ -9,22 +10,20 @@ const [todos, setToDo] = useState([
   { id: 2, title: "eat", done: true },
   { id: 3, title: "drink", done: false },
 ])
-const [newTodo, setNewTodo] = useState("");
 
-const handleSubmit = (e) => {
-e.preventDefault();
-if(!newTodo){
+const addTodo  = (title ) => {
+if(!title){
   return 
 }
  const  newT={
     id: Date.now(), 
-  title:newTodo, 
+  title: title, 
   done: false, 
 
   }
  
   setToDo([...todos, newT]);
-  setNewTodo("");
+
 };
 
   return (
@@ -34,13 +33,9 @@ if(!newTodo){
           <TodoItem key={todo.id} todo={todo} />
         ))}
       </ul>
-      <form onSubmit={handleSubmit}>
-  <input
-    value={newTodo}
-    onChange={(e) => setNewTodo(e.target.value)}
-  />
-  <button type="submit">אישור</button>
-</form>
+ 
+<TodoForm onAdd={addTodo} />
+
     </div>
   )
 }
