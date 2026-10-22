@@ -2,10 +2,15 @@ function getColor(done) {
   return done ?  'green':'red'
 }
 
-function TodoItem({ todo }) {
-  const { title, done } = todo;
+function TodoItem({ todo, onDone }) {
+  const {id,  title, done } = todo;
 
-  return <li style={{ border: `5px solid ${getColor(done)}` }}>{title}</li>
+  return (
+    <li style={{ border: `5px solid ${getColor(done)}` }}>
+      {title}
+      {!done && <button onClick={() => onDone(id)}>המשימה בוצעה</button>}
+    </li>
+  )
 }
 
 export default TodoItem

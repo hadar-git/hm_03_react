@@ -26,14 +26,20 @@ if(!title){
 
 };
 
+const markDone = (id) => {
+  setToDo(todos.map((todo) =>
+    todo.id === id ? { ...todo, done: true } : todo
+  ));
+};
+
   return (
     <div>
       <ul>
         {todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} />
+          <TodoItem key={todo.id} todo={todo} onDone={markDone} />
         ))}
       </ul>
- 
+
 <TodoForm onAdd={addTodo} />
 
     </div>
