@@ -12,8 +12,18 @@ const [todos, setToDo] = useState([
 const [newTodo, setNewTodo] = useState("");
 
 const handleSubmit = (e) => {
-  e.preventDefault();
-  setToDo([...todos, newTodo]);
+e.preventDefault();
+if(!newTodo){
+  return 
+}
+ const  newT={
+    id: Date.now(), 
+  title:newTodo, 
+  done: false, 
+
+  }
+ 
+  setToDo([...todos, newT]);
   setNewTodo("");
 };
 
