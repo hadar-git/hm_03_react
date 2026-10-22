@@ -4,7 +4,11 @@ import { useState } from 'react'
 
 function TodoList() {
 
-const [todos, setToDo] = useState(["sleep", "eat", "drink"])
+const [todos, setToDo] = useState([
+  { id: 1, title: "sleep", done: false },
+  { id: 2, title: "eat", done: true },
+  { id: 3, title: "drink", done: false },
+])
 const [newTodo, setNewTodo] = useState("");
 
 const handleSubmit = (e) => {
@@ -17,7 +21,7 @@ const handleSubmit = (e) => {
     <div>
       <ul>
         {todos.map((todo) => (
-          <TodoItem key={todo} todo={todo} />
+          <TodoItem key={todo.id} todo={todo} />
         ))}
       </ul>
       <form onSubmit={handleSubmit}>
